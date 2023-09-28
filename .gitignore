@@ -1,2 +1,4 @@
 .env
 rss.exe
+go.sum
+vendor
