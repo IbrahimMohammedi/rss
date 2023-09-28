@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"log"
+	"net/http"
 	"os"
 
 	"github.com/go-chi/chi/v5"
@@ -26,11 +26,10 @@ func main() {
 		Addr:    ":" + portString,
 	}
 
-	log.Printf("Port listening to port %v", portString)
-	err := srv.ListenAndServe(){
-		if err != nil {
-			log.Fatal(err)
-		}
+	log.Printf("Server listening to port %v", portString)
+	err := srv.ListenAndServe()
+	if err != nil {
+		log.Fatal(err)
 	}
 
 }
