@@ -1,14 +1,21 @@
 package main
 
 import (
+	"database/sql"
 	"log"
 	"net/http"
 	"os"
+	"rss/internal/database"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/cors"
 	"github.com/joho/godotenv"
+	_ "github.com/lib/pq"
 )
+
+type apiConfig struct {
+	DB *database.Queries
+}
 
 func main() {
 	// loading the .env in our current env
@@ -17,6 +24,23 @@ func main() {
 	portString := os.Getenv("PORT")
 	if portString == "" {
 		log.Fatal("PORT is not found")
+	}
+	// import the database connection
+	dbURL := os.Getenv("DB8URL")
+	if dbURL == "" {
+		log.Fatal("DB_URL is not found")
+	}
+
+	conn, err := sql.Open("postgres", dbURL)
+	if err != nil {
+		log.Fatal("Cant connect to database:", err)
+	}
+	//convert from sql.db to DB.queris
+	querries := database.New(conn)
+
+	//create a new api cfg and pass querries in it
+	apiCfg := apiConfig{
+		DB: querries,
 	}
 
 	//setting up the router
