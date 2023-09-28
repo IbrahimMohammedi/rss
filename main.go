@@ -33,6 +33,7 @@ func main() {
 	//v1 router to use the handlerReadiness handler
 	v1Router := chi.NewRouter()
 	v1Router.Get("/healthz", handlerReadiness)
+	v1Router.Get("/err", handlerErr)
 	//mounting v1 path
 	router.Mount("/v1", v1Router)
 
