@@ -26,7 +26,7 @@ func main() {
 		log.Fatal("PORT is not found")
 	}
 	// import the database connection
-	dbURL := os.Getenv("DB8URL")
+	dbURL := os.Getenv("DB_URL")
 	if dbURL == "" {
 		log.Fatal("DB_URL is not found")
 	}
@@ -36,11 +36,11 @@ func main() {
 		log.Fatal("Cant connect to database:", err)
 	}
 	//convert from sql.db to DB.queris
-	querries := database.New(conn)
+	dbQuerries := database.New(conn)
 
 	//create a new api cfg and pass querries in it
 	apiCfg := apiConfig{
-		DB: querries,
+		DB: dbQuerries,
 	}
 
 	//setting up the router
@@ -58,6 +58,7 @@ func main() {
 	v1Router := chi.NewRouter()
 	v1Router.Get("/healthz", handlerReadiness)
 	v1Router.Get("/err", handlerErr)
+	v1Router.Post("/users", apiCfg.handlerUsersCreate)
 	//mounting v1 path
 	router.Mount("/v1", v1Router)
 
@@ -67,9 +68,6 @@ func main() {
 	}
 
 	log.Printf("Server listening to port %v", portString)
-	err := srv.ListenAndServe()
-	if err != nil {
-		log.Fatal(err)
-	}
+	log.Fatal(srv.ListenAndServe())
 
 }
