@@ -30,6 +30,11 @@ func main() {
 		AllowCredentials: false,
 		MaxAge:           300,
 	}))
+	//v1 router to use the handlerReadiness handler
+	v1Router := chi.NewRouter()
+	v1Router.HandleFunc("/healthz", handlerReadiness)
+	//mounting v1 path
+	router.Mount("/v1", v1Router)
 
 	srv := &http.Server{
 		Handler: router,
