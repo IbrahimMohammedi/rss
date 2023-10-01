@@ -13,6 +13,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
+// open connection to data base
 type apiConfig struct {
 	DB *database.Queries
 }
