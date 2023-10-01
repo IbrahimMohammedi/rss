@@ -40,8 +40,6 @@ func (cfg *apiConfig) handlerUsersCreate(w http.ResponseWriter, r *http.Request)
 	respondWithJSON(w, 201, databaseUserToUser(user))
 }
 
-// Get user by api key handler
 func (cfg *apiConfig) GetUser(w http.ResponseWriter, r *http.Request, user database.User) {
-
 	respondWithJSON(w, 201, databaseUserToUser(user))
 }
