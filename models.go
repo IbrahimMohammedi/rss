@@ -12,6 +12,7 @@ type User struct {
 	CreatedAt time.Time `json: "created_at"`
 	UpdatedAt time.Time `json: "updated_at"`
 	Name      string    `json: "name"`
+	ApiKey    string    `json: "ApiKey`
 }
 
 // connection that takes a user from databse and returns a user struct
@@ -21,5 +22,6 @@ func databaseUserToUser(dbUser database.User) User {
 		CreatedAt: dbUser.CreatedAt,
 		UpdatedAt: dbUser.UpdatedAt,
 		Name:      dbUser.Name,
+		ApiKey:    dbUser.ApiKey,
 	}
 }
