@@ -11,6 +11,7 @@ import (
 	"github.com/google/uuid"
 )
 
+// Post Create user hanlder
 func (cfg *apiConfig) handlerUsersCreate(w http.ResponseWriter, r *http.Request) {
 	type parameters struct {
 		Name string `json = "name"`
@@ -40,6 +41,7 @@ func (cfg *apiConfig) handlerUsersCreate(w http.ResponseWriter, r *http.Request)
 	respondWithJSON(w, 201, databaseUserToUser(user))
 }
 
+// Get user by api key handler
 func (cfg *apiConfig) GetUser(w http.ResponseWriter, r *http.Request) {
 	apiKey, err := auth.GetAPIKey(r.Header)
 	if err != nil {
