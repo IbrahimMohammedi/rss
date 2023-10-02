@@ -13,7 +13,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-// open connection to data base
+// open connection to database
 type apiConfig struct {
 	DB *database.Queries
 }
@@ -65,6 +65,7 @@ func main() {
 	v1Router.Get("/users", apiCfg.middleWareAuth(apiCfg.GetUser))
 	//Feed
 	v1Router.Post("/feeds", apiCfg.middleWareAuth(apiCfg.handlerFeedsCreate))
+	v1Router.Get("/feeds", apiCfg.handlerFeedsGet)
 	//mounting v1 path
 	router.Mount("/v1", v1Router)
 
