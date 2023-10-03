@@ -65,12 +65,10 @@ func main() {
 	v1Router.Get("/users", apiCfg.middleWareAuth(apiCfg.GetUser))
 	//Feed
 	v1Router.Post("/feeds", apiCfg.middleWareAuth(apiCfg.handlerFeedsCreate))
-<<<<<<< HEAD
-	v1Router.Get("/feeds", apiCfg.handlerFeedsGet)
+
+	v1Router.Get("/feeds", apiCfg.handlerGetFeeds)
 	//Feed Follows
-	v1Router.Post("/feed_Follows", apiCfg.middleWareAuth(apiCfg.handlerCreateFeedFollows))
-=======
->>>>>>> parent of 76b53b3 (hooked the get feeds end point)
+	v1Router.Post("/feed_follows", apiCfg.middleWareAuth(apiCfg.handlerFeedFollowCreate))
 	//mounting v1 path
 	router.Mount("/v1", v1Router)
 
