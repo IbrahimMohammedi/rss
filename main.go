@@ -13,7 +13,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-// open connection to database
+// open connection to data base
 type apiConfig struct {
 	DB *database.Queries
 }
@@ -65,9 +65,12 @@ func main() {
 	v1Router.Get("/users", apiCfg.middleWareAuth(apiCfg.GetUser))
 	//Feed
 	v1Router.Post("/feeds", apiCfg.middleWareAuth(apiCfg.handlerFeedsCreate))
+<<<<<<< HEAD
 	v1Router.Get("/feeds", apiCfg.handlerFeedsGet)
 	//Feed Follows
 	v1Router.Post("/feed_Follows", apiCfg.middleWareAuth(apiCfg.handlerCreateFeedFollows))
+=======
+>>>>>>> parent of 76b53b3 (hooked the get feeds end point)
 	//mounting v1 path
 	router.Mount("/v1", v1Router)
 
