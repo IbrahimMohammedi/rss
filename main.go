@@ -66,6 +66,8 @@ func main() {
 	//Feed
 	v1Router.Post("/feeds", apiCfg.middleWareAuth(apiCfg.handlerFeedsCreate))
 	v1Router.Get("/feeds", apiCfg.handlerFeedsGet)
+	//Feed Follows
+	v1Router.Post("/feed_Follows", apiCfg.middleWareAuth(apiCfg.handlerCreateFeedFollows))
 	//mounting v1 path
 	router.Mount("/v1", v1Router)
 
