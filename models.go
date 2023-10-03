@@ -46,6 +46,7 @@ func databaseFeedToFeed(dbFeed database.Feed) Feed {
 	}
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 func databaseFeedsToFeeds(dbFeeds []database.Feed) []Feed {
 	feeds := []Feed{}
@@ -73,5 +74,7 @@ func databaseFeedFollowsToFeedFollows(dbFeedFollows database.FeedFollow) FeedFol
 		FeedID:    dbFeedFollows.FeedsID,
 	}
 }
+=======
+>>>>>>> parent of 271b488 (created database Feeds To Feeds function in models.go)
 =======
 >>>>>>> parent of 271b488 (created database Feeds To Feeds function in models.go)
