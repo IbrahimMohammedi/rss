@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"rss/internal/database"
 	"time"
 
@@ -79,4 +80,34 @@ func databaseFeedsFollowsToFeedsFollows(dbFeedFollows []database.FeedFollow) []F
 		feedFollows = append(feedFollows, databaseFeedFollowsToFeedFollows(dbFeedFollows))
 	}
 	return feedFollows
+}
+
+type Post struct {
+	ID          uuid.UUID      `json:"id"`
+	CreatedAt   time.Time      `json:"created_at"`
+	UpdatedAt   time.Time      `json:"updated_at"`
+	Title       string         `json:"title"`
+	Description sql.NullString `json:"description"`
+	Url         string         `json:"url"`
+	FeedsID     uuid.UUID      `json:"feeds_id"`
+}
+
+func databasePostToPost(dbPost database.Post) Post {
+	return Post{
+		ID:          dbPost.ID,
+		CreatedAt:   dbPost.CreatedAt,
+		UpdatedAt:   dbPost.UpdatedAt,
+		Title:       dbPost.Title,
+		Description: dbPost.Description,
+		Url:         dbPost.Url,
+		FeedsID:     dbPost.FeedsID,
+	}
+}
+
+func databasePostsToPosts(dbPost []database.Post) []Post {
+	posts := []Post{}
+	for _, dbPost := range dbPost {
+		posts = append(posts, databasePostToPost(dbPost))
+	}
+	return posts
 }
