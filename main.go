@@ -44,8 +44,8 @@ func main() {
 	apiCfg := apiConfig{
 		DB: dbQuerries,
 	}
-	// Caling the scraper
-	startScarping(dbQuerries, 10, time.Minute)
+	// Caling the scraper on a separate go routine
+	go startScarping(dbQuerries, 10, time.Minute)
 
 	//setting up the router
 	router := chi.NewRouter()
