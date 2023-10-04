@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"rss/internal/database"
+	"time"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/cors"
@@ -43,6 +44,8 @@ func main() {
 	apiCfg := apiConfig{
 		DB: dbQuerries,
 	}
+	// Caling the scraper
+	startScarping(dbQuerries, 10, time.Minute)
 
 	//setting up the router
 	router := chi.NewRouter()
